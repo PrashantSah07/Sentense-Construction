@@ -6,6 +6,7 @@ import Questions from './components/Questions.jsx'
 import Result from './components/Result.jsx'
 import { ScoreProvider } from './context/ScoreContext.jsx'
 import { UserAnswerProvider } from './context/UserAnswerContext.jsx'
+import Errorpage from './Errorpage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <UserAnswerProvider>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<App />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/result" element={<Result />} />
+          <Route path="*" element={<Errorpage />} />
         </Routes>
       </ BrowserRouter>
     </ScoreProvider>

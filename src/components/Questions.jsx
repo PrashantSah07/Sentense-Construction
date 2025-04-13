@@ -43,6 +43,7 @@ const Questions = () => {
                 setDisabled(true);
             } else {
                 navigate('/result');
+                document.exitFullscreen();
             }
         }
     }, [time]);
@@ -88,22 +89,25 @@ const Questions = () => {
             setDisabled(true);
         } else {
             navigate('/result');
+            document.exitFullscreen();  
         }
     };
 
     return (
         <div className='max-w-[1550px] mx-auto flex justify-center items-center flex-col'>
             {questions.map(function (ques) {
-                return (<div key={ques.questionId} className='flex flex-col shadow-2xl rounded-[10px] max-w-[1000px] mt-10 justify-center items-center gap-10 px-10 pb-30 py-10 relative'>
+                return (<div key={ques.questionId} className='flex flex-col shadow-2xl rounded-[10px] max-w-[1000px] md:mt-10 justify-center items-center gap-10 sm:px-10 px-5 pb-30 sm:py-10 py-7 relative'>
                     <div className='flex justify-between items-center w-full'>
                         <p className='font-medium'>0:{time}</p>
-                        <Link to='/'><button className='text-white px-5 py-1 rounded-[8px] border-[#00000046] bg-red-500 hover:bg-red-700 duration-200'>Quit</button></Link>
+                        <Link to='/'><button className='text-white px-5 py-1 rounded-[8px] border-[#00000046] bg-red-500 hover:bg-red-700 duration-200' onClick={function () {
+                            document.exitFullscreen();
+                        }}>Quit</button></Link>
                     </div>
                     <h1 className='text-[18px] font-medium text-[#666060]'>Select the correct words in the correct order</h1>
                     <div>
-                        <p className='text-[20px] flex gap-2 leading-10'><span className='font-bold'>{quesLength}.</span>{ques.question}</p>
+                        <p className='sm:text-[20px] text-[18px] flex gap-2 leading-10'><span className='font-bold'>{quesLength}.</span>{ques.question}</p>
                     </div>
-                    <div className='flex gap-2'>
+                    <div className='flex gap-2 flex-wrap items-center'>
                         {ques.options.map(function (value, i) {
                             return <button key={i} className='border-1 px-3 py-2 rounded-[8px]  border-[#00000046] bg-amber-100 hover:bg-[#f9ed97] duration-200' onClick={function () {
                                 handleOptionSelect(value)
